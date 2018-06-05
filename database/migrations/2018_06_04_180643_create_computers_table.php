@@ -20,6 +20,7 @@ class CreateComputersTable extends Migration
 			
 			$table->string('user', 20);
 			$table->unsignedInteger('sector_id');
+			$table->string('type', 15);
 			$table->string('manufacturer', 50);
 			$table->string('model', 50);
 			$table->string('serial_number', 50);
@@ -32,6 +33,9 @@ class CreateComputersTable extends Migration
 			$table->string('licensed', 3);
 			$table->string('network_name', 10)->nullable();
 			$table->string('ip_address', 15)->nullable();
+			$table->smallInteger('year_acquisition')->nullable();
+			$table->string('status', 30);
+
 
 			$table->foreign('sector_id')->references('id')->on('sectors');
 			
@@ -49,8 +53,8 @@ class CreateComputersTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('computers');
-
 		$table->dropForeign('computers_sectors_id_foreign');
+		Schema::dropIfExists('computers');
+	
 	}
 }

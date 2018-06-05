@@ -16,9 +16,9 @@ class CreateSectorsTable extends Migration
         Schema::create('sectors', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('sigla', 10);
-            $table->string('extenso', 100);
-            $table->string('setor_pai', 3)->nullable();
+            $table->string('initials', 10);
+            $table->string('in_full', 100);
+            $table->string('parent_sector', 3)->nullable();
 
             $table->softDeletesTz();
             $table->timestampsTz();
