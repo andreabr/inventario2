@@ -11,6 +11,7 @@ use App\Http\Requests\ComputerCreateRequest;
 use App\Http\Requests\ComputerUpdateRequest;
 use App\Repositories\ComputerRepository;
 use App\Validators\ComputerValidator;
+use App\Entities\Sector;
 
 /**
  * Class ComputersController.
@@ -40,25 +41,28 @@ class ComputersController extends Controller
         $this->repository = $repository;
         $this->validator  = $validator;
     }
-
+         
     /**
-     * Display a listing of the resource.
+     * Display a listing of
+
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\
+
+
      */
     public function index()
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $computers = $this->repository->all();
 
-        if (request()->wantsJson()) {
+        return view('computer.index', compact('computers'));
+    }
 
-            return response()->json([
-                'data' => $computers,
-            ]);
-        }
 
-        return view('computers.index', compact('computers'));
+    public function createForm()
+    {
+        $sectors = Sector::orderBy('initials')->get();
+        return view('computer.form.create', compact('sectors'));
     }
 
     /**
@@ -73,20 +77,14 @@ class ComputersController extends Controller
     public function store(ComputerCreateRequest $request)
     {
         try {
-
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
             $computer = $this->repository->create($request->all());
 
             $response = [
-                'message' => 'Computer created.',
+                'message' => 'Computador cadastrado com sucesso.',
                 'data'    => $computer->toArray(),
             ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
 
             return redirect()->back()->with('message', $response['message']);
         } catch (ValidatorException $e) {
@@ -97,7 +95,7 @@ class ComputersController extends Controller
                 ]);
             }
 
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+            return redirect()->back()->withInput()->withErrors($e->getMessageBag());
         }
     }
 
@@ -111,15 +109,9 @@ class ComputersController extends Controller
     public function show($id)
     {
         $computer = $this->repository->find($id);
+        $sector = Sector::find($computer->sector_id);
 
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $computer,
-            ]);
-        }
-
-        return view('computers.show', compact('computer'));
+        return view('computer.show', compact('computer', 'sector'));
     }
 
     /**
@@ -132,8 +124,9 @@ class ComputersController extends Controller
     public function edit($id)
     {
         $computer = $this->repository->find($id);
+        $sectors = Sector::orderBy('initials')->get();
 
-        return view('computers.edit', compact('computer'));
+        return view('computer.edit', compact('computer', 'sectors'));
     }
 
     /**
@@ -149,26 +142,22 @@ class ComputersController extends Controller
     public function update(ComputerUpdateRequest $request, $id)
     {
         try {
-
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
             $computer = $this->repository->update($request->all(), $id);
 
             $response = [
-                'message' => 'Computer updated.',
+                'message' => 'Computador atualizado com sucesso.',
                 'data'    => $computer->toArray(),
             ];
 
             if ($request->wantsJson()) {
-
                 return response()->json($response);
             }
 
-            return redirect()->back()->with('message', $response['message']);
+            return redirect('computer')->with('message', $response['message']);
         } catch (ValidatorException $e) {
-
             if ($request->wantsJson()) {
-
                 return response()->json([
                     'error'   => true,
                     'message' => $e->getMessageBag()
@@ -192,13 +181,12 @@ class ComputersController extends Controller
         $deleted = $this->repository->delete($id);
 
         if (request()->wantsJson()) {
-
             return response()->json([
-                'message' => 'Computer deleted.',
+                'message' => 'Computador deletado com sucesso.',
                 'deleted' => $deleted,
             ]);
         }
 
-        return redirect()->back()->with('message', 'Computer deleted.');
+        return redirect()->back()->with('message', 'Computador deletado com sucesso.');
     }
 }

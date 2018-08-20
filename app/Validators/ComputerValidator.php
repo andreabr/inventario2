@@ -18,7 +18,19 @@ class ComputerValidator extends LaravelValidator
      * @var array
      */
     protected $rules = [
-        ValidatorInterface::RULE_CREATE => [],
+        ValidatorInterface::RULE_CREATE => [
+            'sector_id' => 'required',
+            'type' => 'required',
+            'manufacturer' => 'required',
+            'model' => 'required',
+            'processor' => 'required',
+            'memory_capacity' => 'required',
+            'hard_disk_capacity' => 'required',
+            'operacional_system' => 'required',
+            'sys_op_architecture' => 'required',
+            'licensed' => 'required',
+            'status' => 'required',
+        ],
         ValidatorInterface::RULE_UPDATE => [],
     ];
 }

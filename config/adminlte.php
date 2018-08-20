@@ -85,7 +85,7 @@ return [
     |
      */
 
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'dashboard',
 
     'logout_url' => 'logout',
 
@@ -108,69 +108,139 @@ return [
      */
 
     'menu' => [
-        'MENU',
-        [
-            'text' => 'Blog',
-            'url' => 'admin/blog',
-            'can' => 'manage-blog',
-        ],
-        [
-            'text' => 'Computadores',
-            'url' => 'equipamentos/computadores/index',
-            'icon' => 'desktop',
+        'EQUIPAMENTOS',
+       [
+        'text' => 'Dashboard',
+        'url' => 'dashboard',
+        'icon' => 'home',
+
+       ],
+
+
+       [
+        'text' => 'Computadores',
+        'url' => 'computer',
+        'icon' => 'desktop',
 
             'submenu' => [
                 [
                     'text' => 'Cadastrar',
                     'icon' => 'pencil-square-o',
-                    'url' => 'equipamentos/computadores/store',
+                    'url' => 'computer/createform',
                 ],
                 [
                     'text' => 'Listagem',
                     'icon' => 'list',
-                    'url' => 'equipamentos/computadores/list',
+                    'url' => 'computer',
                 ],
             ],
         ],
-        'ACCOUNT SETTINGS',
+
         [
-            'text' => 'Multilevel',
-            'icon' => 'share',
+        'text' => 'Monitores',
+        'url' => 'monitor',
+        'icon' => 'tv',
+
             'submenu' => [
                 [
-                    'text' => 'Level One',
-                    'url' => '#',
+                    'text' => 'Cadastrar',
+                    'icon' => 'pencil-square-o',
+                    'url' => 'monitor/createform',
                 ],
                 [
-                    'text' => 'Level One',
-                    'url' => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'Level Two',
-                            'url' => '#',
-                        ],
-                        [
-                            'text' => 'Level Two',
-                            'url' => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'Level Three',
-                                    'url' => '#',
-                                ],
-                                [
-                                    'text' => 'Level Three',
-                                    'url' => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'Level One',
-                    'url' => '#',
+                    'text' => 'Listagem',
+                    'icon' => 'list',
+                    'url' => 'monitor',
                 ],
             ],
         ],
+
+        [
+        'text' => 'Impressoras',
+        'url' => 'printer',
+        'icon' => 'print',
+
+            'submenu' => [
+                [
+                    'text' => 'Cadastrar',
+                    'icon' => 'pencil-square-o',
+                    'url' => 'printer/createform',
+                ],
+                [
+                    'text' => 'Listagem',
+                    'icon' => 'list',
+                    'url' => 'printer',
+                ],
+            ],
+        ],
+
+        'ADMINISTRATIVO',
+        [
+        'text' => 'Setores',
+        'url' => 'sector',
+        'icon' => 'desktop',
+
+            'submenu' => [
+                [
+                    'text' => 'Cadastrar',
+                    'icon' => 'pencil-square-o',
+                    'url' => 'sector/createform',
+                ],
+                [
+                    'text' => 'Lista de setores',
+                    'icon' => 'list',
+                    'url' => 'sector',
+                ],
+            ],
+        ],
+
+
+        'CONFIGURAÇÃO DE CONTA',
+        [
+        'text' => 'Perfil',
+        'icon' => 'user',
+        'url' => 'admin/user'
+        ],
+        
+        
+        // [
+        // 'text' => 'Multilevel',
+        // 'icon' => 'share',
+        // 'submenu' => [
+        //         [
+        //             'text' => 'Level One',
+        //             'url' => '#',
+        //         ],
+        //         [
+        //             'text' => 'Level One',
+        //             'url' => '#',
+        //             'submenu' => [
+        //                 [
+        //                     'text' => 'Level Two',
+        //                     'url' => '#',
+        //                 ],
+        //                 [
+        //                     'text' => 'Level Two',
+        //                     'url' => '#',
+        //                     'submenu' => [
+        //                         [
+        //                             'text' => 'Level Three',
+        //                             'url' => '#',
+        //                         ],
+        //                         [
+        //                             'text' => 'Level Three',
+        //                             'url' => '#',
+        //                         ],
+        //                     ],
+        //                 ],
+        //             ],
+        //         ],
+        //         [
+        //             'text' => 'Level One',
+        //             'url' => '#',
+        //         ],
+        //     ],
+        // ],
         
     ],
 

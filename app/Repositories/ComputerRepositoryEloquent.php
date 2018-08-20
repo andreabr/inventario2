@@ -15,6 +15,21 @@ use App\Validators\ComputerValidator;
  */
 class ComputerRepositoryEloquent extends BaseRepository implements ComputerRepository
 {
+    public function totalPerStatus()
+    {
+        $status = new \stdClass();
+
+        $status->usable = $this->model::usable()->count();
+        $status->unusable = $this->model::unusable()->count();
+        $status->stock = $this->model::stock()->count();
+        $status->undermaintenance = $this->model::undermaintenance()->count();
+        $status->disposing = $this->model::disposing()->count();
+
+        return $status;
+    }
+
+
+    
     /**
      * Specify Model class name
      *
@@ -32,7 +47,6 @@ class ComputerRepositoryEloquent extends BaseRepository implements ComputerRepos
     */
     public function validator()
     {
-
         return ComputerValidator::class;
     }
 
@@ -44,5 +58,4 @@ class ComputerRepositoryEloquent extends BaseRepository implements ComputerRepos
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
 }

@@ -12,6 +12,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -31,11 +32,11 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                <div clasUTContent">
+                    <!-- UTC
+                    <ul cUTC
 
-                    </ul>
+                    </ul>UTC
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
