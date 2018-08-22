@@ -16,6 +16,11 @@ $('.sys_op_architecture').select2({
     placeholder: "Selecione a arquitetura",
     allowClear: true
 });
+
+$('.licensed').select2({
+    placeholder: "Licenciado ?",
+    allowClear: true
+});
 $("#computer-sector-show").select2({
     disabled : true
 });

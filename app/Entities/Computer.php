@@ -24,6 +24,8 @@ class Computer extends Model implements Transformable
         'user', 'sector_id', 'type', 'manufacturer', 'model', 'processor', 'memory_capacity', 'hard_disk_capacity', 'operacional_system', 'sys_op_architecture', 'serial_number', 'bmp_number', 'licensed', 'network_name','ip_address', 'year_acquisition', 'status'
     ];
 
+
+   
     public function scopeUsable($query)
     {
         return $query->where('status', 'Bom - Em Uso');
@@ -48,8 +50,6 @@ class Computer extends Model implements Transformable
     {
         return $query->where('status', 'Ruim - Em descarga');
     }
-
-
 
     public function sector()
     {

@@ -131,7 +131,12 @@
 
         <div class="form-group col-md-3">
             <label for="licensed" col-sm-2 col-form-label>Licenciado</label>
-            <input type="text" class="form-control" name="licensed" value="{!! old('licensed') !!}">
+            <select name="licensed" id="" class="licensed form-control">>
+                <option value=""></option>
+                <option value="SIM">Sim</option>
+                <option value="NÃO">Não</option>
+            </select>
+            {{-- <input type="text" class="form-control" name="licensed" value="{!! old('licensed') !!}"> --}}
         </div>
 
         <div class="form-group col-md-3">
